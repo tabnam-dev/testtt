@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Eid Poem</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      background: linear-gradient(135deg, #0d5c3f, #1e8c63, #ff8fc7, #ffb5d6);
+      background-size: 400% 400%;
+      animation: gradientMove 15s ease infinite;
+      font-family: 'Poppins', sans-serif;
+      position: relative;
+    }
+
+    @keyframes gradientMove {
+      0% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+
+    .moon {
+      position: absolute;
+      width: 180px;
+      height: 180px;
+      background: rgba(255,255,255,0.12);
+      border-radius: 50%;
+      top: 60px;
+      right: 80px;
+      box-shadow: 0 0 60px rgba(255,255,255,0.25);
+      backdrop-filter: blur(8px);
+    }
+
+    .moon::before {
+      content: '';
+      position: absolute;
+      width: 150px;
+      height: 150px;
+      background: rgba(13, 92, 63, 0.85);
+      border-radius: 50%;
+      top: 10px;
+      left: 35px;
+    }
+
+    .stars span {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      background: white;
+      border-radius: 50%;
+      animation: twinkle 4s infinite ease-in-out;
+    }
+
+    @keyframes twinkle {
+      0%,100% {
+        opacity: 0.2;
+        transform: scale(1);
+      }
+      50% {
+        opacity: 1;
+        transform: scale(1.8);
+      }
+    }
+
+    .card {
+      width: 90%;
+      max-width: 850px;
+      padding: 55px;
+      border-radius: 35px;
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.2);
+      backdrop-filter: blur(14px);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+      text-align: center;
+      color: white;
+      z-index: 2;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(120deg, rgba(255,255,255,0.05), transparent, rgba(255,255,255,0.05));
+      transform: translateX(-100%);
+      animation: shine 8s infinite;
+    }
+
+    @keyframes shine {
+      100% {
+        transform: translateX(100%);
+      }
+    }
+
+    h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 4rem;
+      margin-bottom: 15px;
+      letter-spacing: 3px;
+      text-shadow: 0 0 20px rgba(255,255,255,0.4);
+    }
+
+    .subtitle {
+      font-size: 1rem;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      color: #ffe4f0;
+      margin-bottom: 35px;
+    }
+
+    .poem {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.7rem;
+      line-height: 2.1;
+      color: #fffafc;
+      text-shadow: 0 0 12px rgba(255,255,255,0.15);
+    }
+
+    .poem span {
+      display: block;
+      opacity: 0;
+      transform: translateY(25px);
+      animation: fadeUp 1s forwards;
+    }
+
+    .poem span:nth-child(1) { animation-delay: 0.5s; }
+    .poem span:nth-child(2) { animation-delay: 1s; }
+    .poem span:nth-child(3) { animation-delay: 1.5s; }
+    .poem span:nth-child(4) { animation-delay: 2s; }
+    .poem span:nth-child(5) { animation-delay: 2.5s; }
+    .poem span:nth-child(6) { animation-delay: 3s; }
+
+    @keyframes fadeUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .lantern {
+      position: absolute;
+      width: 60px;
+      animation: float 5s ease-in-out infinite;
+      opacity: 0.9;
+    }
+
+    .lantern.left {
+      left: 40px;
+      top: 140px;
+    }
+
+    .lantern.right {
+      right: 40px;
+      bottom: 100px;
+      animation-delay: 2s;
+    }
+
+    @keyframes float {
+      0%,100% {
+        transform: translateY(0px);
+      }
+      50% {
+        transform: translateY(-15px);
+      }
+    }
+
+    footer {
+      margin-top: 35px;
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.75);
+      letter-spacing: 2px;
+    }
+
+    @media(max-width: 768px) {
+      h1 {
+        font-size: 2.8rem;
+      }
+
+      .poem {
+        font-size: 1.3rem;
+      }
+
+      .card {
+        padding: 35px 25px;
+      }
+
+      .moon {
+        width: 120px;
+        height: 120px;
+        top: 30px;
+        right: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="moon"></div>
+
+  <div class="stars">
+    <span style="top:10%; left:15%;"></span>
+    <span style="top:20%; left:75%;"></span>
+    <span style="top:30%; left:40%;"></span>
+    <span style="top:70%; left:20%;"></span>
+    <span style="top:80%; left:60%;"></span>
+    <span style="top:50%; left:90%;"></span>
+    <span style="top:15%; left:55%;"></span>
+    <span style="top:85%; left:85%;"></span>
+  </div>
+
+  <svg class="lantern left" viewBox="0 0 100 200" fill="none">
+    <rect x="25" y="40" width="50" height="90" rx="15" fill="#ffd166"/>
+    <rect x="35" y="25" width="30" height="20" rx="5" fill="#ff8fc7"/>
+    <line x1="50" y1="0" x2="50" y2="25" stroke="white" stroke-width="4"/>
+  </svg>
+
+  <svg class="lantern right" viewBox="0 0 100 200" fill="none">
+    <rect x="25" y="40" width="50" height="90" rx="15" fill="#ffd166"/>
+    <rect x="35" y="25" width="30" height="20" rx="5" fill="#ff8fc7"/>
+    <line x1="50" y1="0" x2="50" y2="25" stroke="white" stroke-width="4"/>
+  </svg>
+
+  <div class="card">
+    <h1>Eid of Love</h1>
+    <div class="subtitle">A Poem Beneath The Crescent Moon</div>
+
+    <div class="poem">
+      <span>Tonight the moon wears emerald light,</span>
+      <span>And every star whispers your name.</span>
+      <span>Between Eid lanterns and soft pink skies,</span>
+      <span>My heart still burns with the same flame.</span>
+      <span>Your eyes feel warmer than a thousand nights,</span>
+      <span>And your smile makes this world feel holy.</span>
+    </div>
+
+    <footer>
+      Written With Love ✨
+    </footer>
+  </div>
+
+</body>
+</html>
