@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eid & Love Poem</title>
+    <style>
+        /* Deep Eid Green Background with a soft, rich gradient */
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #032212 0%, #073a1e 50%, #0b4d2a 100%);
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            color: #fff;
+            overflow-x: hidden;
+            padding: 20px 0;
+            box-sizing: border-box;
+        }
+
+        /* Ambient glowing background shapes for a smooth, dreamlike feel */
+        .background-glow {
+            position: absolute;
+            width: 350px;
+            height: 350px;
+            background: radial-gradient(circle, rgba(255, 105, 180, 0.18) 0%, rgba(0,0,0,0) 70%);
+            top: 15%;
+            left: 15%;
+            z-index: 1;
+            animation: float 7s ease-in-out infinite alternate;
+        }
+
+        .background-glow-2 {
+            position: absolute;
+            width: 450px;
+            height: 450px;
+            background: radial-gradient(circle, rgba(255, 182, 193, 0.12) 0%, rgba(0,0,0,0) 70%);
+            bottom: 10%;
+            right: 10%;
+            z-index: 1;
+            animation: float 9s ease-in-out infinite alternate-reverse;
+        }
+
+        /* Container for the interactive box */
+        .wrapper {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            width: 90%;
+            max-width: 550px;
+        }
+
+        /* The Box Details */
+        .alert-box {
+            background: rgba(255, 255, 255, 0.07);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 2px solid #ff69b4; /* Love Pink Border */
+            border-radius: 28px;
+            padding: 25px;
+            cursor: pointer;
+            box-shadow: 0 10px 35px 0 rgba(255, 105, 180, 0.15), 
+                        0 0 25px rgba(4, 41, 22, 0.6);
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow: hidden;
+            max-height: 85px; /* Hidden state height */
+        }
+
+        /* Header / Trigger style */
+        .alert-header {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #ff69b4; /* Hot Pink */
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin: 0;
+            padding-bottom: 25px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-shadow: 0 0 12px rgba(255, 105, 180, 0.6);
+        }
+
+        /* Open State: Smoothly expands to show everything perfectly */
+        .alert-box:hover, .alert-box:focus-within, .alert-box.active {
+            max-height: 2000px; /* High threshold to adapt to full text length */
+            background: rgba(255, 255, 255, 0.12);
+            box-shadow: 0 15px 45px 0 rgba(255, 105, 180, 0.35),
+                        0 0 35px rgba(255, 255, 255, 0.05);
+            border-color: #ffb6c1; /* Softens on reveal */
+        }
+
+        /* Content wrapper that fades in */
+        .poem-content {
+            opacity: 0;
+            transform: translateY(25px);
+            transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+            transition-delay: 0.15s;
+        }
+
+        /* Reveal content on action */
+        .alert-box:hover .poem-content, 
+        .alert-box:focus-within .poem-content,
+        .alert-box.active .poem-content {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Poem Typography */
+        .poem-stanza {
+            margin-bottom: 25px;
+        }
+
+        .poem-stanza p {
+            font-family: 'Georgia', serif;
+            font-size: 1.3rem;
+            line-height: 1.8;
+            color: #fff2f6; /* Soft cream-pink for easy reading */
+            margin: 6px 0;
+            font-style: italic;
+            text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Little decorative Eid/Heart divider */
+        .divider {
+            color: #ff69b4;
+            font-size: 1.4rem;
+            margin: 20px 0;
+            letter-spacing: 4px;
+        }
+
+        /* The Special Note Box */
+        .love-note {
+            background: rgba(255, 105, 180, 0.12);
+            border-left: 3px solid #ff69b4;
+            border-right: 3px solid #ff69b4;
+            padding: 20px;
+            border-radius: 16px;
+            margin-top: 30px;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        .love-note .heartfelt-text {
+            font-size: 1.05rem;
+            line-height: 1.6;
+            color: #ffe4e1;
+            font-style: italic;
+            margin-bottom: 15px;
+        }
+
+        .love-note .celebration-text {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #ffb6c1;
+            letter-spacing: 1px;
+            text-shadow: 0 0 8px rgba(255, 182, 193, 0.4);
+        }
+
+        /* Smooth Floating Animations */
+        @keyframes float {
+            0% { transform: translateY(0px) scale(1); }
+            100% { transform: translateY(-25px) scale(1.05); }
+        }
+
+        /* Hint text at the bottom */
+        .hint {
+            margin-top: 20px;
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.4);
+            letter-spacing: 1px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Smooth background glow elements -->
+    <div class="background-glow"></div>
+    <div class="background-glow-2"></div>
+
+    <div class="wrapper">
+        <!-- Click or Hover this box to reveal -->
+        <div class="alert-box" onclick="this.classList.toggle('active')">
+            
+            <div class="alert-header">
+                🚨 *gay alert* 🚨
+            </div>
+            
+            <div class="poem-content">
+                <div class="divider">🌙 💖 🌙</div>
+                
+                <!-- Your Beautiful Poem Structure -->
+                <div class="poem-stanza">
+                    <p>she is my world, my beginning and end,</p>
+                    <p>my greatest adventure, my very best friend</p>
+                </div>
+
+                <div class="poem-stanza">
+                    <p>the world is a shadow when compared to you</p>
+                    <p>the truest of blessings i ever once knew</p>
+                </div>
+
+                <div class="poem-stanza">
+                    <p>pure is voice that she does own</p>
+                    <p>the sweetest comfort that ive ever known</p>
+                </div>
+
+                <div class="poem-stanza">
+                    <p>the moon looks down from up above</p>
+                    <p>admiring her with silent love</p>
+                </div>
+
+                <div class="poem-stanza">
+                    <p>the stars all talk as she pass</p>
+                    <p>like diamonds falling on a glass</p>
+                </div>
+
+                <div class="poem-stanza">
+                    <p>walk is just like the midnight air,</p>
+                    <p>with silent beauty, pretty and rare</p>
+                </div>
+
+                <div class="poem-stanza">
+                    <p>night sky is huge and deep</p>
+                    <p>a quiet space where angels sleep</p>
+                </div>
+
+                <div class="poem-stanza">
+                    <p>but all its stars would fade from view,</p>
+                    <p>the moment my gaze drifts to you.</p>
+                </div>
+                
+                <!-- Your Special Dedicated Note -->
+                <div class="love-note">
+                    <div class="heartfelt-text">
+                        "every word of these humble poems flew directly from my heart, carrying my love for you, i poured my entire heart into every single letter."
+                    </div>
+                    <div class="celebration-text">
+                        happy 6 month of loving you and EID MUBARAK my angel 🌙✨
+                    </div>
+                </div>
+
+                <div class="divider">💖</div>
+            </div>
+            
+        </div>
+        <p class="hint">(Hover or tap the box to unlock your message)</p>
+    </div>
+
+</body>
+</html>
